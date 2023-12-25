@@ -5,6 +5,8 @@ import {
   getAuth,
   signInWithPopup,
 } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import { UsersService } from 'src/app/shared/services/users.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,11 @@ import {
 export class LoginComponent implements OnInit {
   signInForm!: FormGroup;
 
-  constructor(private _fb: FormBuilder) {}
+  constructor(
+    private _fb: FormBuilder,
+    private _router: Router,
+    private _userService: UsersService
+  ) {}
 
   get email() {
     return this.signInForm.controls['email'];
@@ -45,7 +51,14 @@ export class LoginComponent implements OnInit {
     const auth = getAuth();
 
     signInWithPopup(auth, provider)
-      .then((resp) => {})
+      .then((resp) => {
+        console.log(resp, ' :: resp');
+        if (!resp) return;
+        localStorage.setItem('user', JSON.stringify(resp.user));
+        // add users data into db
+        this._userService.saveUser(resp.user);
+        this._router.navigate(['/']);
+      })
       .catch((err) => {
         console.log('Error ', err);
       });

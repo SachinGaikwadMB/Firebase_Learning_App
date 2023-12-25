@@ -5,3 +5,11 @@ body {
   font-family: $font-regular;
   background: $background;
 }
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.form-control:focus, .form-select:focus {
+  box-shadow: none;
+}

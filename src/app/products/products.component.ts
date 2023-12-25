@@ -1,18 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class ProductsComponent  implements OnInit{
   subscription!: Subscription;
   products: any[] = [];
-  jsonObj = {
-    key: 'value',
-  };
 
   constructor(private _af: AngularFireDatabase) {}
 
@@ -33,4 +31,5 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+  
 }
