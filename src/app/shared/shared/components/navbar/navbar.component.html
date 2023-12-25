@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-3 shadow-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand cursor-pointer fw-bold" routerLink="/">
+     E-Bazar
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Smartphones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"
+            >Laptops</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Fragrances</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Skincare</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Groceries</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home Decoration</a>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center">
+        <div class="dropdown" *ngIf="user">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <div class="profile-pic">
+              <img [src]="profileUrl"/>
+            </div>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item">Hello {{ user?.displayName.split(' ')[0]}} !</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="#">Your Orders</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="#">Your Account</a
+              >
+            </li>
+            <!-- only visible for admin -->
+            <li *ngIf="true">
+              <a class="dropdown-item" href="#">Manage Order</a
+              >
+            </li>
+            <li *ngIf="true">
+              <a class="dropdown-item" routerLink="/products/manage">Manage Product</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item cursor-pointer" (click)="logout()">logout</a></li>
+          </ul>
+        </div>
+        <ng-container *ngIf="!user">
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            routerLink="/login"
+          >
+            Sign In
+          </button>
+        </ng-container>
+        <div class="position-relative">
+          <a type="button" class="position-relative">
+            <span class="">
+              <i class="fa-solid fa-cart-shopping cart"></i
+            ></span>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+              0
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
