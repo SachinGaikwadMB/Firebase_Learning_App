@@ -6,19 +6,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccessDeniedComponent } from './access-denied/access-denied.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AccessDeniedComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule, 
     AngularFireModule.initializeApp(environment.firebase),
-    BrowserAnimationsModule,
-
-    
-    
+    BrowserAnimationsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]
